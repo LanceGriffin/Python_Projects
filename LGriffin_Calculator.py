@@ -1,3 +1,4 @@
+# Lance Griffin
 # Calculator project
 # This program will perform mathematical operations based on user input.
 # Some of the advanced features include:
@@ -5,6 +6,7 @@
 # - Exponentiation
 # - Square root
 # - Trigonometric functions (sin, cos, tan)
+# Sources: W3Schools
 
 import math
 
