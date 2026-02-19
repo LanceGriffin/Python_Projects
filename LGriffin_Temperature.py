@@ -31,20 +31,24 @@ def main():
         celsius = float(input("Enter temperature in Celsius: "))
         fahrenheit = celsius_to_fahrenheit(celsius)
         print(f"{celsius}°C is equal to {fahrenheit}°F")
+
     elif choice == "2":
         fahrenheit = float(input("Enter temperature in Fahrenheit: "))
         celsius = fahrenheit_to_celsius(fahrenheit)
         print(f"{fahrenheit}°F is equal to {celsius}°C")
+
     elif choice == "3":
         celsius = float(input("Enter temperature in Celsius: "))
         fahrenheit = celsius_to_fahrenheit(celsius)
         kelvin = celsius_to_kelvin(celsius)
         print(f"{celsius}°C is equal to {fahrenheit}°F and {kelvin}K")
+
     elif choice == "4":
         kelvin = float(input("Enter temperature in Kelvin: "))
         celsius = kelvin_to_celsius(kelvin)
         fahrenheit = celsius_to_fahrenheit(celsius)
         print(f"{kelvin}K is equal to {celsius}°C and {fahrenheit}°F")
+        
     else:
         print("Invalid choice. Choose a number between 1 and 4.")
 
