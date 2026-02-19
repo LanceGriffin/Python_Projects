@@ -31,3 +31,4 @@ def main():
         if play_again.lower() != "yes":
             print("Thanks for playing! Goodbye!")
             break
+if __name__ == "__main__":    main()
