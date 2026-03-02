@@ -52,6 +52,7 @@
 
 import random
 
+# Function to get the user's choice of rock, paper, or scissors OR the corresponding numbers
 def get_user_choice():
     while True:
         choice = input("Enter your choice (rock, paper, scissors): ").lower()
@@ -59,43 +60,60 @@ def get_user_choice():
             return choice
         print("Invalid input. Try again.")
 
+# Function to get the computer's choice
 def get_computer_choice():
-    return random.choice(['rock', 'paper', 'scissors'])
+    choices = ['rock', 'paper', 'scissors']
+    return random.choice(choices)
 
-def determine_winner(user, computer):
-    if user == computer:
-        return "Its a tie!"
-    elif (user == "rock" and computer == "scissors") or \
-            (user == "scissors" and computer == "paper") or \
-            (user == "paper" and computer == "rock"):
+# Function to determine the winner
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice.split()[0]:
+        return "It's a tie!"
+    elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+            (user_choice == 'paper' and computer_choice == 'rock') or \
+            (user_choice == 'scissors' and computer_choice == 'paper'):
         return "You win!"
     else:
         return "Computer wins!"
     
-def scoreboard(user_score, computer_score):
-    print(f"Score - You: {user_score} | Computer: {computer_score}")
-    
+# Function to keep track of scores
+def update_scores(user_choice, computer_choice, scores):
+    if user_choice == computer_choice.split()[0]:
+        scores['ties'] += 1
+    elif (user_choice == 'rock') and (computer_choice == 'scissors'):
+        scores['user'] += 1
+    elif (user_choice == 'paper') and (computer_choice == 'rock'):
+        scores['user'] += 1
+    elif (user_choice == 'scissors') and (computer_choice == 'paper'):
+        scores['user'] += 1
+    else:
+        scores['computer'] += 1
+
+# Main function to play the game
 def play_game():
-    user_score = 0
-    computer_score = 0
-    user_choice = get_user_choice()
-    computer_choice = get_computer_choice()
+    scorse = {'user': 0, 'computer': 0, 'ties': 0}
+    while True:
+        user_choice = get_user_choice()
+        computer_choice = get_computer_choice()
+        print(f"You chose: {user_choice}")
+        print(f"The computer chose: {computer_choice}")
+        result = determine_winner(user_choice, computer_choice)
+        print(result)
+        update_scores(user_choice, computer_choice, scorse)
+        print(f"Scores - You: {scorse['user']}, Computer: {scorse['computer']}, Ties: {scorse['ties']}")
+        if not play_again():
+            break
 
-    print(f"You chose: {user_choice}")
-    print(f"Computer chose: {computer_choice}")
-
-    result = determine_winner(user_choice, computer_choice)
-    print(result)
-
-    if "You win!" in result:
-        user_score += 1
-    elif "Computer wins!" in result:
-        computer_score += 1
-
-    scoreboard(user_score, computer_score)
-
-    if input("Play again? (yes/no): ").lower() == "yes":
-        play_game()
+# Function to ask the user if they want to play again
+def play_again():
+    while True:
+        again = input("\nDo you want to play again? (yes/no): ").lower()
+        if again in ['yes', 'no']:
+            return again == 'yes'
+        print("Invalid input. Please enter 'yes' or 'no'.")
 
 if __name__ == "__main__":
-    play_game()
+    while True:
+        play_game()
+        if not play_again():
+            break
