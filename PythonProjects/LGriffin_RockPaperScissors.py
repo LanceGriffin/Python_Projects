@@ -101,8 +101,6 @@ def play_game():
         print(result)
         update_scores(user_choice, computer_choice, scorse)
         print(f"Scores - You: {scorse['user']}, Computer: {scorse['computer']}, Ties: {scorse['ties']}")
-        if not play_again():
-            break
 
 # Function to ask the user if they want to play again
 def play_again():
