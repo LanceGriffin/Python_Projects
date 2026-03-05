@@ -6,32 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slots Menu</title>
     <link rel="stylesheet" href="SlotsMenu.css">
+    <script defer src="SlotsMenu.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Slots!</h1>
-        <p>Here you can play the slot machine and get a chance to win big!</p>
-
-        <div class="button-group">
-            <button id="playBtn">Play Slots</button>
-            <button onclick="location.href='MainMenu.html'">Return to Main Menu</button>
-            <button onclick="location.href='QuitMenu.html'">Quit Game</button>
+    <div class="container" role="main" aria-labelledby="title">
+        <h1 id="title">Slot Machine</h1>
+        <p>Use the buttons below or Arrow Up/Down to navigate.</p>
+        <div class="button-group" role="menu" aria-label="Main menu">
+            <button id="PlayButton" role="menuitem" aria-label="Play">Play</button>
+            <button id="RulesButton" role="menuitem" aria-label="Rules">Rules</button>
+            <button id="CreditsButton" role="menuitem" aria-label="Credits">Credits</button>
+            <button id="ExitButton" role="menuitem" aria-label="Exit">Exit</button>
         </div>
-        <script>
-            // when running under the Flask server, clicking this will call /play and
-            // replace the page contents with the response. The Python game is started
-            // in a separate process. If the page was opened normally in a browser
-            // without the backend present, the fetch will fail silently.
-            document.getElementById('playBtn').addEventListener('click', function() {
-                // open the play endpoint in a new tab/window so the server can respond
-                // with a status page and the existing menu can be closed.
-                window.open('/play', '_blank');
-                // original window may or may not be allowed to close; this will
-                // succeed only if the page was opened via script (e.g. by server
-                // using webbrowser.open). If it fails, the user can manually close.
-                window.close();
-            });
-        </script>
     </div>
+
+    <py-scripts src="./SlotsProgram.py"></py-scripts>
 </body>
 </html>

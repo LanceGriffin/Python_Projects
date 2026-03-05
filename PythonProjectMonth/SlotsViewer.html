@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slots Program Viewer</title>
+    <style>
+        :root{background:#0b0f14;color:#e6eef6}
+        body{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; margin:0; padding:1rem; background:linear-gradient(180deg,#0b0f14,#12202a);}
+        .toolbar{display:flex;gap:0.5rem;margin-bottom:1rem}
+        button{background:#1f6feb;color:white;border:0;padding:0.6rem 0.9rem;border-radius:6px;cursor:pointer}
+        button:focus{outline:3px solid #ffd86b}
+        .container{background:#041122;padding:1rem;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+        pre{white-space:pre-wrap;word-break:break-word;overflow:auto;max-height:75vh;padding:1rem;background:#00121a;border-radius:6px;color:#cfe8ff}
+        a.download{margin-left:auto;color:#bde5ff;text-decoration:underline}
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <button id="closeBtn">Close</button>
+        <button id="reloadBtn">Reload</button>
+        <a id="downloadLink" class="download" href="SlotsProgram.py" download>Download SlotsProgram.py</a>
+    </div>
+    <div class="container">
+        <h2>SlotsProgram.py</h2>
+        <pre id="code">Loading...</pre>
+    </div>
+
+    <script>
+        async function loadCode(){
+            try{
+                const res = await fetch('SlotsProgram.py');
+                if(!res.ok) throw new Error('Could not load file');
+                const txt = await res.text();
+                const pre = document.getElementById('code');
+                pre.textContent = txt;
+            }catch(err){
+                document.getElementById('code').textContent = 'Error loading file: ' + err.message;
+            }
+        }
+        document.getElementById('closeBtn').addEventListener('click', ()=> window.close());
+        document.getElementById('reloadBtn').addEventListener('click', loadCode);
+        loadCode();
+    </script>
+</body>
+</html>
